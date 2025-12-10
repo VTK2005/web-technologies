@@ -23,26 +23,46 @@ document.addEventListener('DOMContentLoaded', function () {
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     msg.textContent = '';
+    msg.style.color = '#a00'; // reset to error color by default
+
     const name = form.name.value;
     const reg = form.reg.value;
     const email = form.email.value;
     const phone = form.phone.value;
 
+    const allEmpty =
+      !isNotEmpty(name) &&
+      !isNotEmpty(reg) &&
+      !isNotEmpty(email) &&
+      !isNotEmpty(phone);
+
+    // 🔔 Popup when *nothing* is entered
+    if (allEmpty) {
+      alert('Please fill in all fields before submitting.');
+      msg.textContent = 'Please fill in all fields before submitting.';
+      form.name.focus();
+      return;
+    }
+
+    // Normal validation
     if (!isNotEmpty(name)) {
       msg.textContent = 'Name must not be empty.';
       form.name.focus();
       return;
     }
+
     if (!isNotEmpty(reg)) {
       msg.textContent = 'Registration number must not be empty.';
       form.reg.focus();
       return;
     }
+
     if (!isNotEmpty(email) || !validEmail(email)) {
       msg.textContent = 'Please enter a valid email.';
       form.email.focus();
       return;
     }
+
     if (!isNotEmpty(phone) || !validPhone(phone)) {
       msg.textContent = 'Please enter a valid phone number.';
       form.phone.focus();
@@ -53,9 +73,10 @@ document.addEventListener('DOMContentLoaded', function () {
     msg.style.color = 'green';
     msg.textContent = 'Submitted successfully!';
     form.reset();
+
     setTimeout(() => {
       msg.textContent = '';
-      msg.style.color = '';
+      msg.style.color = '#a00';
     }, 3000);
   });
 });
