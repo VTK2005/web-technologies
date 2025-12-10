@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Registration — VIT-AP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="form-wrap">
+    <header style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+  <div style="display:flex;align-items:center;gap:12px">
+    <img src="logo.png" alt="VIT-AP logo" style="width:48px;height:48px;object-fit:contain;border-radius:6px;padding:4px;background:#fff;border:1px solid rgba(0,0,0,0.04)">
+    <h2 style="margin:0;font-size:18px">Registration Form</h2>
+  </div>
+  <a href="index.html" style="color:var(--accent);font-weight:700;text-decoration:none">Back to Home</a>
+</header>
+
+    <form id="regForm" novalidate>
+      <div>
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" placeholder="Full name">
+      </div>
+
+      <div>
+        <label for="reg">Registration Number</label>
+        <input id="reg" name="reg" type="text" placeholder="Registration number">
+      </div>
+
+      <div>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com">
+      </div>
+
+      <div>
+        <label for="phone">Phone Number</label>
+        <input id="phone" name="phone" type="tel" placeholder="+91 9XXXXXXXXX">
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn-ghost" id="backBtn">Back</button>
+        <button type="submit" class="btn-primary">Submit</button>
+      </div>
+
+      <div id="msg" class="msg" aria-live="polite"></div>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
