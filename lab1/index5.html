@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Tarun Kumar | Portfolio</title>
+
+<style>
+/* ---------- ROOT COLORS ---------- */
+:root{
+    --primary:#6a11cb;
+    --secondary:#2575fc;
+    --accent:#ff9800;
+    --glass:rgba(255,255,255,0.15);
+}
+
+/* ---------- BODY ---------- */
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:
+        radial-gradient(circle at top left,#1b1f3b,#090b1a),
+        radial-gradient(circle at bottom right,#2b1055,#000);
+    color:#f5f5f5;
+}
+
+/* ---------- HEADER ---------- */
+header{
+    padding:60px 20px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+header::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(120deg,var(--primary),var(--secondary));
+    opacity:0.85;
+    z-index:-1;
+}
+
+header h1{
+    font-size:42px;
+    letter-spacing:2px;
+    margin:0;
+}
+
+header p{
+    margin-top:10px;
+    font-size:18px;
+    opacity:0.9;
+}
+
+/* ---------- SECTION GLASS CARD ---------- */
+section{
+    width:85%;
+    margin:30px auto;
+    padding:30px;
+    border-radius:18px;
+    background:var(--glass);
+    backdrop-filter:blur(12px);
+    box-shadow:
+        0 15px 30px rgba(0,0,0,0.4),
+        inset 0 0 20px rgba(255,255,255,0.05);
+    transition:transform 0.3s ease;
+}
+
+section:hover{
+    transform:translateY(-6px);
+}
+
+h2{
+    font-size:26px;
+    margin-bottom:15px;
+    background:linear-gradient(90deg,var(--accent),#fff);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+/* ---------- LIST STYLES ---------- */
+ul{
+    list-style:none;
+    padding:0;
+}
+
+ul li{
+    padding:10px 0;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+ul li:last-child{
+    border-bottom:none;
+}
+
+/* ---------- PROJECT HIGHLIGHT ---------- */
+.projects li{
+    position:relative;
+    padding-left:20px;
+}
+
+.projects li::before{
+    content:"✦";
+    position:absolute;
+    left:0;
+    color:var(--accent);
+}
+
+/* ---------- FOOTER ---------- */
+footer{
+    margin-top:40px;
+    padding:30px 15px;
+    text-align:center;
+    background:linear-gradient(135deg,#000428,#004e92);
+}
+
+footer p{
+    margin:8px 0;
+    font-size:14px;
+    letter-spacing:0.5px;
+}
+
+/* ---------- LINK EFFECT ---------- */
+a{
+    color:var(--accent);
+    text-decoration:none;
+    position:relative;
+}
+
+a::after{
+    content:"";
+    position:absolute;
+    width:0;
+    height:2px;
+    bottom:-4px;
+    left:0;
+    background:var(--accent);
+    transition:0.3s;
+}
+
+a:hover::after{
+    width:100%;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:768px){
+    header h1{font-size:32px;}
+    section{width:92%;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Voonna Tarun Kumar</h1>
+    <p>Frontend Developer • Computer Science Student • Tech Enthusiast</p>
+</header>
+
+<section>
+    <h2>About Me</h2>
+    <p>
+        Motivated Computer Science student at VIT-AP University with strong
+        frontend skills in HTML, CSS, JavaScript, and React.
+        Passionate about building visually appealing and user-friendly web applications.
+    </p>
+</section>
+
+<section>
+    <h2>Education</h2>
+    <ul>
+        <li><strong>B.Tech (CSE)</strong> – VIT-AP University | CGPA: 9.23</li>
+        <li><strong>Intermediate</strong> – Tirumula Junior College | 97.8%</li>
+        <li><strong>SSC</strong> – St. Claret E.M High School | 94.3%</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Skills</h2>
+    <ul>
+        <li>Python, Java, C, SQL</li>
+        <li>HTML, CSS, JavaScript, Tailwind CSS, React</li>
+        <li>Machine Learning, Regression Models</li>
+        <li>Git, GitHub, VS Code, Jupyter Notebook</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Projects</h2>
+    <ul class="projects">
+        <li><strong>E-Commerce Website</strong> – Amazon-inspired UI using HTML, CSS & JS</li>
+        <li><strong>Real Estate Price Prediction</strong> – ML project using Python</li>
+        <li><strong>Personal Portfolio</strong> – Responsive website using React</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Leadership & Activities</h2>
+    <ul>
+        <li>Microsoft Student Chapter – Designing Team Member</li>
+        <li>GDG OnCampus – Front-End Development Member</li>
+    </ul>
+</section>
+
+<footer>
+    <p>📧 voonnatarun@gmail.com</p>
+    <p>📞 +91 94940 70922</p>
+    <p>
+        <a href="#">GitHub</a> •
+        <a href="#">LinkedIn</a>
+    </p>
+</footer>
+
+</body>
+</html>
