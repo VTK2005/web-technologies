@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drag & Drop Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>🗂️ Task Manager</h1>
+
+<div class="input-area">
+    <input type="text" id="taskInput" placeholder="Enter task name">
+    <button onclick="addTask()">Add Task</button>
+</div>
+
+<div class="board">
+    <div class="column" id="todo" ondragover="allowDrop(event)" ondrop="drop(event)">
+        <h3>To Do</h3>
+    </div>
+
+    <div class="column" id="progress" ondragover="allowDrop(event)" ondrop="drop(event)">
+        <h3>In Progress</h3>
+    </div>
+
+    <div class="column" id="done" ondragover="allowDrop(event)" ondrop="drop(event)">
+        <h3>Completed</h3>
+    </div>
+</div>
+
+<div class="message" id="successMsg">
+    ✅ Task Completed Successfully
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

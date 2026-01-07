@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #eef2f7;
+    padding: 30px;
+}
+
+.container {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.media-box {
+    background: white;
+    padding: 20px;
+    width: 320px;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+audio, video {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.time {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #333;
+}

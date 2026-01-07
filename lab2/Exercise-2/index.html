@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 Multimedia</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Audio Player -->
+    <div class="media-box">
+        <h2>🎵 Audio Player</h2>
+        <audio id="audioPlayer" controls>
+            <source src="audio.mp3" type="audio/mpeg">
+            Your browser does not support audio.
+        </audio>
+        <div class="time" id="audioTime">Current Time: 0:00</div>
+    </div>
+
+    <!-- Video Player -->
+    <div class="media-box">
+        <h2>🎬 Video Player</h2>
+        <video id="videoPlayer" controls muted>
+            <source src="video.mp4" type="video/mp4">
+            Your browser does not support video.
+        </video>
+        <div class="time" id="videoTime">Current Time: 0:00</div>
+    </div>
+
+</div>
+
+<script src="media.js"></script>
+</body>
+</html>

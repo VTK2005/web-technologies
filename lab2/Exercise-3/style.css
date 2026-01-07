@@ -1,0 +1,111 @@
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #dbeafe, #fef3c7);
+    padding: 40px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #1e293b;
+    letter-spacing: 1px;
+}
+
+.input-area {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+input {
+    padding: 10px;
+    width: 240px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    outline: none;
+}
+
+input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+button {
+    padding: 10px 18px;
+    margin-left: 8px;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.board {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+}
+
+.column {
+    background: #ffffff;
+    width: 260px;
+    min-height: 320px;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: transform 0.2s;
+}
+
+.column:hover {
+    transform: translateY(-4px);
+}
+
+.column h3 {
+    text-align: center;
+    margin-bottom: 12px;
+    color: #334155;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 6px;
+}
+
+.task {
+    background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: grab;
+    font-size: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.task:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+.task small {
+    display: block;
+    color: #475569;
+    margin-top: 4px;
+    font-size: 12px;
+}
+
+.completed {
+    background: linear-gradient(135deg, #bbf7d0, #86efac) !important;
+}
+
+.message {
+    text-align: center;
+    color: #16a34a;
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 16px;
+}
