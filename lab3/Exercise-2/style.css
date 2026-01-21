@@ -1,0 +1,92 @@
+*{box-sizing:border-box;font-family:Segoe UI;}
+
+body{
+  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+}
+
+.container{
+  width:420px;
+  background:#111827;
+  padding:20px;
+  border-radius:15px;
+  box-shadow:0 0 25px rgba(0,0,0,.5);
+}
+
+h1{text-align:center;color:#38bdf8;}
+
+.products button{
+  margin:5px;
+  padding:8px 12px;
+  background:#22c55e;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.coupon-box{
+  margin:15px 0;
+  display:flex;
+  gap:10px;
+}
+
+.coupon-box input{
+  flex:1;
+  padding:8px;
+  border-radius:6px;
+  border:none;
+}
+
+.coupon-box button{
+  background:#facc15;
+  border:none;
+  padding:8px 12px;
+  border-radius:6px;
+}
+
+.cart{
+  margin-top:15px;
+}
+
+.cart-item{
+  background:#1f2933;
+  padding:10px;
+  margin:8px 0;
+  border-radius:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.cart-item span{
+  font-size:14px;
+}
+
+.qty-btn{
+  padding:2px 7px;
+  margin:0 3px;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+.remove{
+  background:#ef4444;
+  color:white;
+}
+
+.summary{
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px solid #334155;
+}
+
+#discountInfo{
+  color:#a7f3d0;
+  font-size:14px;
+}

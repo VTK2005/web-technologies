@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Adaptive Registration System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<form id="form">
+
+<h2>Smart Registration</h2>
+
+<input type="text" id="name" placeholder="Name">
+<small id="nameErr"></small>
+
+<input type="email" id="email" placeholder="Email">
+<small id="emailErr"></small>
+
+<input type="password" id="password" placeholder="Password">
+<small id="passErr"></small>
+
+<input type="password" id="confirm" placeholder="Confirm Password">
+<small id="confirmErr"></small>
+
+<input type="number" id="age" placeholder="Age">
+
+<select id="role">
+<option value="">Select Role</option>
+<option>Student</option>
+<option>Teacher</option>
+<option>Admin</option>
+</select>
+
+<div id="skillsBox">
+<input type="text" id="skills" placeholder="Skills (comma separated)">
+</div>
+
+<button type="submit">Register</button>
+
+</form>
+
+<script src="script.js"></script>
+</body>
+</html>
