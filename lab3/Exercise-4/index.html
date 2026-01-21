@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>User Activity Monitor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <h1>🕵️ User Activity Monitor</h1>
+
+  <div class="test-area">
+    <input type="text" placeholder="Type something...">
+    <button>Click Me</button>
+    <textarea placeholder="Focus here..."></textarea>
+  </div>
+
+  <div class="controls">
+    <button onclick="resetLog()">Reset Log</button>
+    <button onclick="exportLog()">Export Log</button>
+  </div>
+
+  <div class="warning" id="warningBox"></div>
+
+  <div class="log-box">
+    <h3>Live Activity Log</h3>
+    <div id="logContainer"></div>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

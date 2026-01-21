@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Multi-Stage Form Engine</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>🚀 Smart Registration Wizard</h1>
+
+  <div class="progress-bar">
+    <div id="progress"></div>
+  </div>
+
+  <form id="multiForm">
+
+    <!-- Stage 1 -->
+    <div class="stage active">
+      <h3>Stage 1: Basic Info</h3>
+      <input type="text" id="name" placeholder="Name">
+      <input type="email" id="email" placeholder="Email">
+    </div>
+
+    <!-- Stage 2 -->
+    <div class="stage">
+      <h3>Stage 2: Security</h3>
+      <input type="password" id="password" placeholder="Password (min 6 chars)">
+      <input type="password" id="confirm" placeholder="Confirm Password">
+    </div>
+
+    <!-- Stage 3 -->
+    <div class="stage">
+      <h3>Stage 3: Profile</h3>
+      <input type="number" id="age" placeholder="Age (18+)">
+      <input type="text" id="city" placeholder="City">
+    </div>
+
+    <!-- Stage 4 (Review) -->
+    <div class="stage">
+      <h3>Stage 4: Review Details</h3>
+      <div class="review-box" id="reviewBox"></div>
+    </div>
+
+    <div class="buttons">
+      <button type="button" onclick="prevStage()">Back</button>
+      <button type="button" onclick="nextStage()">Next</button>
+      <button type="submit" id="submitBtn">Submit</button>
+    </div>
+
+  </form>
+
+  <p id="status"></p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
