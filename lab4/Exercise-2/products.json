@@ -1,0 +1,9 @@
+{
+  "products": [
+    { "name": "Laptop", "price": 65000, "category": "Electronics" },
+    { "name": "Mobile", "price": 25000, "category": "Electronics" },
+    { "name": "Shoes", "price": 1500, "category": "Fashion" },
+    { "name": "Washing Machine", "price": 32000, "category": "Home Appliance" },
+    { "name": "Headphones", "price": 2000, "category": "Accessories" }
+  ]
+}

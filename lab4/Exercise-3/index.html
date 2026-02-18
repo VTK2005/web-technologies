@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student CRUD</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Student Management System</h2>
+
+    <form id="studentForm">
+      <input type="text" id="sid" placeholder="Student ID" required />
+      <input type="text" id="sname" placeholder="Name" required />
+      <input type="text" id="dept" placeholder="Department" required />
+      <input type="number" id="marks" placeholder="Marks" required />
+
+      <button type="submit">Add / Update</button>
+    </form>
+
+    <p id="msg" class="msg"></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Dept</th>
+          <th>Marks</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

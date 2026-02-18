@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Username Checker</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Registration Form</h2>
+    <p class="subtext">Check username availability instantly</p>
+
+    <form id="registerForm">
+      <label>Username</label>
+      <div class="inputBox">
+        <input type="text" id="username" placeholder="Enter username..." required />
+        <span id="loader" class="loader hidden"></span>
+      </div>
+
+      <p id="message" class="message"></p>
+
+      <button type="submit" id="submitBtn" disabled>Register</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
