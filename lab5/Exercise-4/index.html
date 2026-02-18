@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inventory Manager</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header class="hero">
+    <h1>📦 Product Inventory</h1>
+    <p>JSON CRUD + Search + Low Stock Alerts</p>
+  </header>
+
+  <main class="wrap">
+    <section class="left">
+      <h2>Product Form</h2>
+
+      <input type="number" id="pid" placeholder="Product ID"/>
+      <input type="text" id="pname" placeholder="Product Name"/>
+      <input type="text" id="pcategory" placeholder="Category"/>
+      <input type="number" id="pprice" placeholder="Price"/>
+      <input type="number" id="pstock" placeholder="Stock Quantity"/>
+
+      <div class="btns">
+        <button class="add" id="addBtn">Add</button>
+        <button class="edit" id="updateBtn">Update</button>
+        <button class="clear" id="clearBtn">Clear</button>
+      </div>
+
+      <div class="search-box">
+        <input type="text" id="searchCategory" placeholder="Search by category..."/>
+        <button id="searchBtn">Search</button>
+        <button id="resetBtn">Reset</button>
+      </div>
+
+      <div id="invMsg" class="msg hidden"></div>
+    </section>
+
+    <section class="right">
+      <div class="top-row">
+        <h2>Inventory Table</h2>
+        <button id="reloadBtn">Reload</button>
+      </div>
+
+      <p class="total">Total Inventory Value: ₹<span id="totalValue">0</span></p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Value</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="invBody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

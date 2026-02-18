@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+  <book>
+    <id>B101</id>
+    <title>Clean Code</title>
+    <author>Robert Martin</author>
+    <status>Available</status>
+  </book>
+
+  <book>
+    <id>B102</id>
+    <title>Atomic Habits</title>
+    <author>James Clear</author>
+    <status>Issued</status>
+  </book>
+
+  <book>
+    <id>B103</id>
+    <title>Deep Work</title>
+    <author>Cal Newport</author>
+    <status>Available</status>
+  </book>
+</library>

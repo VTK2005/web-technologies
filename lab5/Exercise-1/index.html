@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Employee Manager - XML CRUD</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header class="topbar">
+    <h1>Employee Management</h1>
+    <p>XML + AJAX CRUD Dashboard</p>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Add / Update Employee</h2>
+
+      <div class="form-grid">
+        <div class="input-box">
+          <label>Employee ID</label>
+          <input type="number" id="empId" placeholder="Enter ID"/>
+        </div>
+
+        <div class="input-box">
+          <label>Name</label>
+          <input type="text" id="empName" placeholder="Enter Name"/>
+        </div>
+
+        <div class="input-box">
+          <label>Department</label>
+          <input type="text" id="empDept" placeholder="Enter Department"/>
+        </div>
+
+        <div class="input-box">
+          <label>Salary</label>
+          <input type="number" id="empSalary" placeholder="Enter Salary"/>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn primary" id="addBtn">Add Employee</button>
+        <button class="btn warning" id="updateBtn">Update Employee</button>
+        <button class="btn danger" id="clearBtn">Clear</button>
+      </div>
+
+      <div id="messageBox" class="message hidden"></div>
+    </section>
+
+    <section class="card">
+      <div class="table-header">
+        <h2>Employee Records</h2>
+        <button class="btn secondary" id="reloadBtn">Reload XML</button>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Department</th>
+              <th>Salary</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="empTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Employee Manager - XML CRUD | AJAX + DOM Manipulation</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

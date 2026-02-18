@@ -1,0 +1,6 @@
+[
+  { "pid": 201, "name": "Laptop", "category": "Electronics", "price": 65000, "stock": 12 },
+  { "pid": 202, "name": "Mouse", "category": "Electronics", "price": 600, "stock": 5 },
+  { "pid": 203, "name": "Notebook", "category": "Stationery", "price": 80, "stock": 40 },
+  { "pid": 204, "name": "Water Bottle", "category": "Accessories", "price": 250, "stock": 2 }
+]

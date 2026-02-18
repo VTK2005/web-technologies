@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Library Book Tracker</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <nav class="navbar">
+    <h1>📚 Library Tracker</h1>
+    <button id="reloadBtn">Reload XML</button>
+  </nav>
+
+  <main class="layout">
+    <section class="panel">
+      <h2>Manage Books</h2>
+
+      <label>Book ID</label>
+      <input type="text" id="bookId" placeholder="B104"/>
+
+      <label>Title</label>
+      <input type="text" id="bookTitle" placeholder="Enter book title"/>
+
+      <label>Author</label>
+      <input type="text" id="bookAuthor" placeholder="Enter author name"/>
+
+      <label>Status</label>
+      <select id="bookStatus">
+        <option value="Available">Available</option>
+        <option value="Issued">Issued</option>
+      </select>
+
+      <div class="btn-group">
+        <button class="add" id="addBtn">Add</button>
+        <button class="update" id="updateBtn">Update</button>
+        <button class="clear" id="clearBtn">Clear</button>
+      </div>
+
+      <div id="msgBox" class="msg hidden"></div>
+    </section>
+
+    <section class="table-section">
+      <h2>Book List</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Book ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="bookTableBody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Records</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header class="header">
+    <h1>🎓 Student Record System</h1>
+    <p>JSON CRUD using Fetch API</p>
+  </header>
+
+  <main class="main">
+    <div class="form-box">
+      <h2>Add / Update Student</h2>
+
+      <input type="number" id="sid" placeholder="Student ID"/>
+      <input type="text" id="sname" placeholder="Student Name"/>
+      <input type="text" id="scourse" placeholder="Course"/>
+      <input type="number" id="smarks" placeholder="Marks"/>
+
+      <div class="btns">
+        <button id="addBtn">Add</button>
+        <button id="updateBtn">Update</button>
+        <button id="clearBtn">Clear</button>
+      </div>
+
+      <div id="alertBox" class="alert hidden"></div>
+    </div>
+
+    <div class="table-box">
+      <div class="table-top">
+        <h2>Student List</h2>
+        <button id="reloadBtn">Reload</button>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Course</th>
+            <th>Marks</th>
+            <th>Grade</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="studentBody"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
