@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Notes Manager</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4ff;
+      color: #1e2a45;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1a237e, #3949ab);
+      color: white;
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 4px 12px rgba(26,35,126,0.3);
+    }
+    header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: .5px; }
+    header span { font-size: 1.8rem; }
+
+    .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
+
+    /* Toast */
+    #toast {
+      position: fixed; top: 20px; right: 20px; z-index: 9999;
+      padding: 14px 22px; border-radius: 10px; font-weight: 600;
+      font-size: .93rem; box-shadow: 0 6px 24px rgba(0,0,0,.18);
+      opacity: 0; transform: translateY(-12px);
+      transition: all .35s ease; pointer-events: none;
+    }
+    #toast.show { opacity: 1; transform: translateY(0); }
+    #toast.success { background: #e8f5e9; color: #2e7d32; border-left: 4px solid #43a047; }
+    #toast.error   { background: #fce4ec; color: #c62828; border-left: 4px solid #e53935; }
+
+    /* Form Card */
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 28px 32px;
+      box-shadow: 0 4px 20px rgba(57,73,171,.1);
+      margin-bottom: 30px;
+    }
+    .card h2 { font-size: 1.15rem; margin-bottom: 18px; color: #3949ab; }
+
+    .form-row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .form-group { flex: 1; min-width: 200px; margin-bottom: 14px; }
+    label { display: block; font-size: .85rem; font-weight: 600; margin-bottom: 6px; color: #555; }
+
+    input, textarea, select {
+      width: 100%; padding: 10px 14px;
+      border: 1.5px solid #dde1f0;
+      border-radius: 8px; font-size: .95rem;
+      transition: border .2s;
+      font-family: inherit;
+    }
+    input:focus, textarea:focus {
+      outline: none; border-color: #3949ab;
+      box-shadow: 0 0 0 3px rgba(57,73,171,.12);
+    }
+    textarea { resize: vertical; min-height: 80px; }
+
+    .btn-row { display: flex; gap: 10px; margin-top: 6px; flex-wrap: wrap; }
+
+    button {
+      padding: 10px 22px; border: none; border-radius: 8px;
+      font-weight: 600; font-size: .9rem; cursor: pointer;
+      transition: all .2s;
+    }
+    .btn-primary   { background: #3949ab; color: white; }
+    .btn-primary:hover { background: #283593; transform: translateY(-1px); }
+    .btn-secondary { background: #e8eaf6; color: #3949ab; }
+    .btn-secondary:hover { background: #c5cae9; }
+    .btn-danger    { background: #ffebee; color: #c62828; }
+    .btn-danger:hover { background: #ffcdd2; }
+    .btn-warning   { background: #fff8e1; color: #f57f17; }
+    .btn-warning:hover { background: #ffecb3; }
+
+    /* Notes Grid */
+    #notesGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .note-card {
+      background: white;
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 2px 14px rgba(57,73,171,.08);
+      border-top: 4px solid #3949ab;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .note-card:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(57,73,171,.15); }
+
+    .note-card .badge {
+      display: inline-block;
+      background: #e8eaf6; color: #3949ab;
+      padding: 3px 10px; border-radius: 20px;
+      font-size: .75rem; font-weight: 700; margin-bottom: 10px;
+      text-transform: uppercase; letter-spacing: .5px;
+    }
+    .note-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .note-card p  { font-size: .88rem; color: #666; line-height: 1.5; margin-bottom: 14px; }
+    .note-card .meta { font-size: .76rem; color: #aaa; margin-bottom: 12px; }
+    .note-card .actions { display: flex; gap: 8px; }
+
+    .empty-state {
+      text-align: center; padding: 60px 20px; color: #9fa8da;
+      grid-column: 1/-1;
+    }
+    .empty-state .icon { font-size: 3.5rem; margin-bottom: 12px; }
+    .empty-state p { font-size: 1rem; }
+
+    /* Modal */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.45); z-index: 1000;
+      align-items: center; justify-content: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: white; border-radius: 16px;
+      padding: 30px; width: 95%; max-width: 480px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.2);
+      animation: slideUp .25s ease;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
+    .modal h2 { margin-bottom: 20px; color: #3949ab; }
+
+    #loadingOverlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(255,255,255,.65); z-index: 2000;
+      align-items: center; justify-content: center;
+    }
+    #loadingOverlay.active { display: flex; }
+    .spinner {
+      width: 44px; height: 44px;
+      border: 4px solid #e8eaf6;
+      border-top-color: #3949ab;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<header>
+  <span>📓</span>
+  <h1>Student Notes Manager</h1>
+</header>
+
+<div id="toast"></div>
+<div id="loadingOverlay"><div class="spinner"></div></div>
+
+<div class="container">
+
+  <!-- Add Note Form -->
+  <div class="card">
+    <h2>➕ Add New Note</h2>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="title">Title *</label>
+        <input type="text" id="title" placeholder="e.g. MongoDB Basics" maxlength="100"/>
+      </div>
+      <div class="form-group">
+        <label for="subject">Subject *</label>
+        <input type="text" id="subject" placeholder="e.g. Database"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description">Description *</label>
+      <textarea id="description" placeholder="Write your note here..."></textarea>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="addNote()">Save Note</button>
+      <button class="btn-secondary" onclick="clearForm()">Clear</button>
+    </div>
+  </div>
+
+  <!-- Notes List -->
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+      <h2>📋 All Notes (<span id="noteCount">0</span>)</h2>
+      <button class="btn-secondary" onclick="loadNotes()" style="padding:7px 16px;font-size:.85rem;">🔄 Refresh</button>
+    </div>
+    <div id="notesGrid">
+      <div class="empty-state">
+        <div class="icon">📭</div>
+        <p>No notes yet. Add your first note above!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal-overlay" id="editModal">
+  <div class="modal">
+    <h2>✏️ Edit Note</h2>
+    <input type="hidden" id="editId"/>
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" id="editTitle" maxlength="100"/>
+    </div>
+    <div class="form-group">
+      <label>Subject</label>
+      <input type="text" id="editSubject"/>
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <textarea id="editDescription"></textarea>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="updateNote()">Update Note</button>
+      <button class="btn-secondary" onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── Config ─────────────────────────────────────────────────────────────────
+const API = '/notes';
+
+// ─── Toast Notification ──────────────────────────────────────────────────────
+function showToast(msg, type = 'success') {
+  const t = document.getElementById('toast');
+  t.textContent = (type === 'success' ? '✅ ' : '❌ ') + msg;
+  t.className = `show ${type}`;
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.className = '', 3000);
+}
+
+// ─── Loading Overlay ─────────────────────────────────────────────────────────
+function setLoading(active) {
+  document.getElementById('loadingOverlay').classList.toggle('active', active);
+}
+
+// ─── AJAX Helper with Error Handling ─────────────────────────────────────────
+async function apiRequest(url, method = 'GET', body = null) {
+  const opts = {
+    method,
+    headers: { 'Content-Type': 'application/json' }
+  };
+  if (body) opts.body = JSON.stringify(body);
+
+  const res = await fetch(url, opts);
+
+  // Guard against non-JSON responses (e.g. HTML error pages)
+  let data;
+  const contentType = res.headers.get('content-type') || '';
+  if (contentType.includes('application/json')) {
+    data = await res.json();
+  } else {
+    throw new Error(`Unexpected response (HTTP ${res.status})`);
+  }
+
+  if (!res.ok || !data.success) {
+    throw new Error(data.error || `HTTP ${res.status}`);
+  }
+  return data;
+}
+
+// ─── Load All Notes ───────────────────────────────────────────────────────────
+async function loadNotes() {
+  setLoading(true);
+  try {
+    const data = await apiRequest(API);
+    renderNotes(data.data);
+    document.getElementById('noteCount').textContent = data.count;
+  } catch (err) {
+    showToast('Failed to load notes: ' + err.message, 'error');
+  } finally {
+    setLoading(false);
+  }
+}
+
+// ─── Render Notes Grid ────────────────────────────────────────────────────────
+function renderNotes(notes) {
+  const grid = document.getElementById('notesGrid');
+  if (!notes || !notes.length) {
+    grid.innerHTML = `<div class="empty-state"><div class="icon">📭</div><p>No notes yet. Add your first note above!</p></div>`;
+    return;
+  }
+  grid.innerHTML = notes.map(n => `
+    <div class="note-card" id="card-${n._id}">
+      <span class="badge">${escHtml(n.subject)}</span>
+      <h3>${escHtml(n.title)}</h3>
+      <p>${escHtml(n.description)}</p>
+      <div class="meta">📅 ${n.created_date}</div>
+      <div class="actions">
+        <button class="btn-warning"
+          data-id="${n._id}"
+          data-title="${escAttr(n.title)}"
+          data-subject="${escAttr(n.subject)}"
+          data-description="${escAttr(n.description)}"
+          onclick="openEditFromBtn(this)">✏️ Edit</button>
+        <button class="btn-danger" onclick="deleteNote('${n._id}')">🗑️ Delete</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ─── Add Note ─────────────────────────────────────────────────────────────────
+async function addNote() {
+  const title       = document.getElementById('title').value.trim();
+  const subject     = document.getElementById('subject').value.trim();
+  const description = document.getElementById('description').value.trim();
+
+  if (!title || !subject || !description) {
+    showToast('Please fill in all fields', 'error');
+    return;
+  }
+
+  setLoading(true);
+  try {
+    // JSON request as per spec
+    const data = await apiRequest(API, 'POST', { title, subject, description });
+    showToast(data.message);
+    clearForm();
+    loadNotes();
+  } catch (err) {
+    showToast(err.message, 'error');
+  } finally {
+    setLoading(false);
+  }
+}
+
+// ─── Open Edit Modal ──────────────────────────────────────────────────────────
+// Use data-* attributes to avoid HTML-entity corruption in onclick strings
+function openEditFromBtn(btn) {
+  document.getElementById('editId').value           = btn.dataset.id;
+  document.getElementById('editTitle').value        = btn.dataset.title;
+  document.getElementById('editSubject').value      = btn.dataset.subject;
+  document.getElementById('editDescription').value  = btn.dataset.description;
+  document.getElementById('editModal').classList.add('active');
+}
+function closeModal() {
+  document.getElementById('editModal').classList.remove('active');
+}
+
+// ─── Update Note (PUT) ────────────────────────────────────────────────────────
+async function updateNote() {
+  const id          = document.getElementById('editId').value;
+  const title       = document.getElementById('editTitle').value.trim();
+  const subject     = document.getElementById('editSubject').value.trim();
+  const description = document.getElementById('editDescription').value.trim();
+
+  if (!title && !subject && !description) {
+    showToast('Nothing to update', 'error'); return;
+  }
+
+  setLoading(true);
+  try {
+    // PUT /notes/{id}  with JSON body as per spec
+    const data = await apiRequest(`${API}/${id}`, 'PUT', { title, subject, description });
+    showToast(data.message);
+    closeModal();
+    loadNotes();
+  } catch (err) {
+    showToast(err.message, 'error');
+  } finally {
+    setLoading(false);
+  }
+}
+
+// ─── Delete Note ──────────────────────────────────────────────────────────────
+async function deleteNote(id) {
+  if (!confirm('Are you sure you want to delete this note?')) return;
+
+  setLoading(true);
+  try {
+    const data = await apiRequest(`${API}/${id}`, 'DELETE');
+    showToast(data.message);
+    document.getElementById(`card-${id}`)?.remove();
+    const count = parseInt(document.getElementById('noteCount').textContent) - 1;
+    document.getElementById('noteCount').textContent = count;
+    if (count === 0) loadNotes();
+  } catch (err) {
+    showToast(err.message, 'error');
+  } finally {
+    setLoading(false);
+  }
+}
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+function clearForm() {
+  ['title','subject','description'].forEach(id => document.getElementById(id).value = '');
+}
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function escAttr(str) {
+  return String(str).replace(/'/g,"&#39;").replace(/"/g,'&quot;');
+}
+
+// Close modal on overlay click
+document.getElementById('editModal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeModal();
+});
+
+// ─── Init ─────────────────────────────────────────────────────────────────────
+loadNotes();
+</script>
+</body>
+</html>
