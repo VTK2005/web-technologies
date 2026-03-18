@@ -1,0 +1,15 @@
+body {
+    font-family: Verdana;
+    background-color: #f4f8fb;
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-left: 6px solid #0077cc;
+    width: 400px;
+    box-shadow: 0 0 8px gray;
+}
