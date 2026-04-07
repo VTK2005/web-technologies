@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MongoDB CRUD</title>
+</head>
+<body>
+
+    <h1>Student CRUD Operations</h1>
+
+    <button onclick="addStudent()">Add Student</button>
+    <button onclick="getStudents()">Get Students</button>
+    <button onclick="updateStudent()">Update Student</button>
+    <button onclick="deleteStudent()">Delete Student</button>
+
+    <pre id="output"></pre>
+
+    <script>
+        function addStudent() {
+            fetch('/add', {
+                method:'POST',
+                headers:{'Content-Type':'application/json'},
+                body: JSON.stringify({id:1, name:'Tarun'})
+            })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('output').innerText = JSON.stringify(data,null,2);
+            });
+        }
+
+        function getStudents() {
+            fetch('/students')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('output').innerText = JSON.stringify(data,null,2);
+            });
+        }
+
+        function updateStudent() {
+            fetch('/update/1', {
+                method:'PUT',
+                headers:{'Content-Type':'application/json'},
+                body: JSON.stringify({name:'Updated Tarun'})
+            })
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('output').innerText = data;
+            });
+        }
+
+        function deleteStudent() {
+            fetch('/delete/1', {
+                method:'DELETE'
+            })
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('output').innerText = data;
+            });
+        }
+    </script>
+
+</body>
+</html>

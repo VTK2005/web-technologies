@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>REST API Frontend</title>
+</head>
+<body>
+
+    <h1>User Management API</h1>
+
+    <button onclick="getUsers()">Get Users</button>
+    <button onclick="addUser()">Add User</button>
+    <button onclick="updateUser()">Update User</button>
+    <button onclick="deleteUser()">Delete User</button>
+
+    <pre id="output"></pre>
+
+    <script>
+        function getUsers() {
+            fetch('/users')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('output').innerText = JSON.stringify(data, null, 2);
+            });
+        }
+
+        function addUser() {
+            fetch('/users', {
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify({id:3, name:'Kiran'})
+            })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('output').innerText = JSON.stringify(data, null, 2);
+            });
+        }
+
+        function updateUser() {
+            fetch('/users/2', {
+                method: 'PUT',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify({id:2, name:'Updated Rahul'})
+            })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('output').innerText = JSON.stringify(data, null, 2);
+            });
+        }
+
+        function deleteUser() {
+            fetch('/users/1', {
+                method: 'DELETE'
+            })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('output').innerText = JSON.stringify(data, null, 2);
+            });
+        }
+    </script>
+
+</body>
+</html>
